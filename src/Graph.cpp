@@ -30,27 +30,28 @@ void Graph::print_all_nodes_from_choice(int choice)
     queue.push(&m_nodes[choice]);
     m_nodes[choice].node_visited();
     int depth = 0;
+    int max = queue.back()->get_name();
     
     while (!queue.empty())
     {
         Node* temp(queue.front());
         answer[temp->get_name()] = depth;
-        queue.pop();
-        bool added(false);
-
+        
         for (Node* node : temp->get_neighbors())
         {
             if (node->get_marked() == false)
             {
                 node->node_visited();
                 queue.push(node);
-                if (!added)
-                {
-                    ++depth;
-                    added = true;
-                }
             }
         }
+        
+        if (temp->get_name() == max)
+        {
+            ++depth;
+            max = queue.back()->get_name();
+        }
+        queue.pop();
     }
 
     for (int a : answer)
