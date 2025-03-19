@@ -23,23 +23,24 @@ void Graph::add_edge(std::ifstream& input, unsigned count)
     }
 }
 
-void Graph::print_all_nodes_from_choice(int choice)
+void Graph::print_all_nodes_from_choice(int choice) // используем BFS алгоритм
 {
-    std::queue<Node*> queue;
-    std::vector<int> answer(m_nodes.size());
+    std::queue<Node*> queue; 
+    std::vector<int> answer(m_nodes.size()); // индекс массива - номер вершины, значение под этим индексом - кратчайшее растояние
     queue.push(&m_nodes[choice]);
     m_nodes[choice].node_visited();
     int depth = 0;
-    int max = queue.back()->get_name();
+    int max = queue.back()->get_name(); // последний добавленный сосед 
     
     while (!queue.empty())
     {
         Node* temp(queue.front());
         answer[temp->get_name()] = depth;
+        queue.pop();
         
         for (Node* node : temp->get_neighbors())
         {
-            if (node->get_marked() == false)
+            if (node->get_marked() == false) // проверка на уникального соседа
             {
                 node->node_visited();
                 queue.push(node);
@@ -51,7 +52,6 @@ void Graph::print_all_nodes_from_choice(int choice)
             ++depth;
             max = queue.back()->get_name();
         }
-        queue.pop();
     }
 
     for (int a : answer)
@@ -60,7 +60,7 @@ void Graph::print_all_nodes_from_choice(int choice)
     }
 }
 
-void Graph::print_graph() const
+void Graph::m_print_graph() const // вспомогательная функция
 {
     int count = 0;
     for (const Node& a : m_nodes)

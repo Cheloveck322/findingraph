@@ -15,10 +15,9 @@ public:
 
     void print_all_nodes_from_choice(int choice);
 
-    void print_graph() const;
-
 private:
     std::vector<Node> m_nodes{};
+    void m_print_graph() const;
 };
 
 #endif
