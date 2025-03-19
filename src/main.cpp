@@ -1,8 +1,14 @@
-#include "include/Graph.h"
+#include "../include/Graph.h"
 
 int main()
 {
-    std::ifstream input("graph.txt");
+    std::ifstream input("../graph.txt");
+
+    if (!input)
+    {
+        std::cerr << "Opening file error.\n";
+        return -1;
+    }
 
     unsigned graph_size(0);
     unsigned count_edges(0);
