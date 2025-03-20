@@ -2,7 +2,7 @@
 
 int main()
 {
-    std::ifstream input("../graph.txt");
+    std::ifstream input("graph.txt");
 
     if (!input)
     {

@@ -9,6 +9,9 @@ set(SOURCES
     src/Node.cpp
 )
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/graph.txt
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 include_directories(include)
 
 add_executable(findingraph ${SOURCES})
